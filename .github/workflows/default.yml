@@ -14,15 +14,11 @@ jobs:
       - name: Did you test?
         run: |
           echo "Checking if PR changes are on test branch"
-          git branch
-          git branch -r
           git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
           git checkout test
           git checkout -
           HASH=$(git log --pretty=‘%h’| sed -n '2 p' | sed -e "s/^‘//" -e "s/’$//")
-          echo $HASH
-          git branch --contains $HASH
-          
+          echo Checking commit $HASH on test branch
           if echo $(git branch --contains $HASH) | grep -w 'test'; then
             echo "The feature is already merged on testing environment [ OK ]"
           else
