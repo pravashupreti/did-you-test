@@ -17,7 +17,8 @@ jobs:
           git branch
           git branch -r
           git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-          git pull test
+          git checkout test
+          git checkout -
           HASH=$(git log --pretty=‘%h’| sed -n '2 p' | sed -e "s/^‘//" -e "s/’$//")
           echo $HASH
           git branch --contains $HASH
