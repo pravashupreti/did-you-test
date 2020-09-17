@@ -15,6 +15,7 @@ jobs:
           git status
           git branch
           git branch -r
+          git log
           git log --pretty=‘%h’ staging..test
 
           
