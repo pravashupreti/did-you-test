@@ -13,5 +13,7 @@ jobs:
         run: |
           echo "Checking if PR changes are on test branch"
           git status
+          git branch
           git log --pretty=‘%h’ staging..test
+
           
