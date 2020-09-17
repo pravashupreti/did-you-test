@@ -9,11 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Did you test?
         run: |
           echo "Checking if PR changes are on test branch"
 
-          HASH=$(git log --pretty=‘%h’ | head -n 1 | sed -e "s/^‘//" -e "s/’$//")
+          HASH=$(git log -1 --pretty=‘%h’ | sed -e "s/^‘//" -e "s/’$//")
+          echo $HASH
           git branch --contains $HASH
 
           
