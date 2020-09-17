@@ -22,3 +22,10 @@ jobs:
           HASH=$(git log --pretty=‘%h’| sed -n '2 p' | sed -e "s/^‘//" -e "s/’$//")
           echo $HASH
           git branch --contains $HASH
+          
+          if echo $(git branch --contains $HASH) | grep -q 'test'; then
+            echo "The feature is already merged on testing environment [ OK ]"
+          else
+            echo "The feature is not merged on testing environment [ ERROR ]"
+            exit 1
+          fi
