@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "Checking if PR changes are on test branch"
 
-          HASH=$(git log -2 --pretty=‘%h’ | sed -e "s/^‘//" -e "s/’$//")
+          HASH=$(git log --pretty=‘%h’| sed -n '2 p' | sed -e "s/^‘//" -e "s/’$//")
           echo $HASH
           git branch --contains $HASH
 
