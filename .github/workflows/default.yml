@@ -16,7 +16,7 @@ jobs:
           git branch
           git branch -r
           git log
-          HASH=$(git log --pretty=‘%h’ | head -n 1 )
+          HASH=$(git log --pretty=‘%h’ | head -n 1 | sed -e "s/^‘//" -e "s/’$//")
           git branch --contains $HASH
 
           
